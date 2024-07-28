@@ -29,14 +29,18 @@
   <!-- Template Main CSS File -->
   <link href="{{asset('assetsAdmin/css/style.css')}}" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: NiceAdmin
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Updated: Apr 20 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
+<body>
+
+    @extends('BE.layout.header')
+
+    @extends('BE.layout.sidebar')
+
+    @yield('content')
+
+
+
+
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
@@ -46,9 +50,15 @@
 <script src="{{asset('assetsAdmin/vendor/echarts/echarts.min.js')}}"></script>
 <script src="{{asset('assetsAdmin/vendor/quill/quill.js')}}"></script>
 <script src="{{asset('assetsAdmin/vendor/simple-datatables/simple-datatables.js')}}"></script>
+<script src="{{ asset('assetsAdmin/vendor/tinymce/tinymce.min.js') }}"></script>
+<script src="{{ asset('assetsAdmin/vendor/php-email-form/validate.js') }}"></script>
 <script src="{{asset('assetsAdmin/vendor/tinymce/tinymce.min.js')}}"></script>
 <script src="{{asset('assetsAdmin/vendor/php-email-form/validate.js')}}"></script>
 
 <!-- Template Main JS File -->
 <script src="{{asset('assetsAdmin/js/main.js')}}"></script>
+
+@stack('scripts')
+
+</body>
 </html>

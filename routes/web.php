@@ -2,11 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Controllers\User\DashboardController;
 
-Route::get('/', function () {
-    return view('FE.pages.index');
-});
 
+
+Route::get('/', [DashboardController::class, 'index'])->name('user.dashboard');
 
 
 

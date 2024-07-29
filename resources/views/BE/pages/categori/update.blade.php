@@ -19,6 +19,7 @@
         {{ Session::get('success') }}
     </div>
     @endif
+
     <section class="section">
         <div class="row">
             <div class="col-lg-6">
@@ -51,4 +52,52 @@
 
 </main><!-- End #main -->
 
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
 @endsection
+
+@push('scripts')
+<script>
+function previewImage(event) {
+    var reader = new FileReader();
+    reader.onload = function() {
+        var img = new Image();
+        img.onload = function() {
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext('2d');
+
+            // Set the desired width and height for the resized image
+            var maxWidth = 200;
+            var maxHeight = 200;
+
+            // Calculate the new width and height while maintaining the aspect ratio
+            var width = img.width;
+            var height = img.height;
+
+            if (width > height) {
+                if (width > maxWidth) {
+                    height *= maxWidth / width;
+                    width = maxWidth;
+                }
+            } else {
+                if (height > maxHeight) {
+                    width *= maxHeight / height;
+                    height = maxHeight;
+                }
+            }
+
+            canvas.width = width;
+            canvas.height = height;
+            ctx.drawImage(img, 0, 0, width, height);
+
+            var resizedImageUrl = canvas.toDataURL('image/jpeg');
+            var imagePreview = document.getElementById('imagePreview');
+            imagePreview.src = resizedImageUrl;
+            imagePreview.style.display = 'block';
+        };
+        img.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+}
+</script>
+@endpush

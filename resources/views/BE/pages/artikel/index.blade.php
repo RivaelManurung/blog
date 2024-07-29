@@ -5,11 +5,11 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Form Data</h1>
+        <h1>Articles</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item active">Form Data</li>
+                <li class="breadcrumb-item active">Articles</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -19,7 +19,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Submitted Form Data</h5>
+                        <h5 class="card-title">Submitted Articles</h5>
 
                         <!-- Table with stripped rows -->
                         <table class="table table-striped">
@@ -31,6 +31,7 @@
                                     <th scope="col">Date Updated</th>
                                     <th scope="col">Deskripsi</th>
                                     <th scope="col">Image</th>
+                                    <th scope="col">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,6 +44,15 @@
                                     <td>{{ $data->deskripsi }}</td>
                                     <td>
                                         <img src="{{ url('images/'.$data->image) }}" alt="{{ $data->judul }}" style="max-width: 100px;">
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('artikel.show', $data->id) }}" class="btn btn-info btn-sm">View</a>
+                                        <a href="{{ route('artikel.edit', $data->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                        <form action="{{ route('artikel.destroy', $data->id) }}" method="POST" style="display:inline-block;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach

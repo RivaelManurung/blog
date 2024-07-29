@@ -12,4 +12,9 @@ class Categori extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function artikels()
+    {
+        return $this->hasMany(Artikel::class);
+    }
 }

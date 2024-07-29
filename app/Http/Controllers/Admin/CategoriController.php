@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -29,14 +28,13 @@ class CategoriController extends Controller
             'name' => $request->name,
         ]);
 
-        return back()->with('success', 'Category created successfully');
+        return redirect()->route('categori.index')->with('success', 'Category created successfully!');
     }
 
-    // Additional methods for edit, update, and destroy
     public function edit($id)
     {
         $category = Categori::findOrFail($id);
-        return view('BE.pages.categori.edit', compact('category'));
+        return view('BE.pages.categori.update', compact('category'));
     }
 
     public function update(Request $request, $id)
@@ -50,7 +48,7 @@ class CategoriController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect()->route('categori.index')->with('success', 'Category updated successfully');
+        return redirect()->route('categori.index')->with('success', 'Category updated successfully!');
     }
 
     public function destroy($id)
@@ -58,6 +56,6 @@ class CategoriController extends Controller
         $category = Categori::findOrFail($id);
         $category->delete();
 
-        return redirect()->route('categori.index')->with('success', 'Category deleted successfully');
+        return redirect()->route('categori.index')->with('success', 'Category deleted successfully!');
     }
 }

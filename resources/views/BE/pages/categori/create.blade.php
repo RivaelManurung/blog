@@ -8,11 +8,17 @@
         <h1>Form Elements</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{url('/admin/dashboard')}}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}">Home</a></li>
+                <li class="breadcrumb-item active">Create Category</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
 
+    @if(Session::has('success'))
+    <div class="alert alert-success" role="alert">
+        {{ Session::get('success') }}
+    </div>
+    @endif
     <section class="section">
         <div class="row">
             <div class="col-lg-6">
@@ -21,16 +27,16 @@
                         <h5 class="card-title">General Form Elements</h5>
 
                         <!-- General Form Elements -->
-                        <form method="POST" action="{{ url('/admin/categori') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('categori.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="row mb-3">
                                 <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="name" class="form-control" id="inputName">
+                                    <input type="text" name="name" class="form-control" id="inputName" required>
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <div class="col-sm-10">
+                                <div class="col-sm-10 offset-sm-2">
                                     <button type="submit" class="btn btn-primary">Submit Form</button>
                                 </div>
                             </div>

@@ -13,6 +13,12 @@
         </nav>
     </div><!-- End Page Title -->
 
+    @if(Session::has('success'))
+    <div class="alert alert-success" role="alert">
+        {{ Session::get('success') }}
+    </div>
+    @endif
+
     <section class="section">
         <div class="row">
             <div class="col-lg-6">
@@ -21,7 +27,7 @@
                         <h5 class="card-title">General Form Elements</h5>
 
                         <!-- General Form Elements -->
-                        <form method="POST" action="{{ url('/admin/artikel') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('artikel.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="row mb-3">
                                 <label for="inputJudul" class="col-sm-2 col-form-label">Judul</label>
@@ -30,31 +36,22 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="kategori" class="col-sm-2 col-form-label">Category</label>
+                                <label for="id_categories" class="col-sm-2 col-form-label">Category</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" id="kategori" name="kategori">
+                                    <select class="form-control" id="id_categories" name="id_categories">
                                         @foreach($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
+                                        @error('id_categories')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </select>
                                 </div>
                             </div>
+                            
 
                             <div class="row mb-3">
-                                <label for="tanggal_dibuat" class="col-sm-2 col-form-label">Date Created</label>
-                                <div class="col-sm-10">
-                                    <input type="date" id="tanggal_dibuat" name="tanggal_dibuat" class="form-control">
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="tanggal_diperbarui" class="col-sm-2 col-form-label">Date Updated</label>
-                                <div class="col-sm-10">
-                                    <input type="date" id="tanggal_diperbarui" name="tanggal_diperbarui"
-                                        class="form-control">
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="inputPassword" class="col-sm-2 col-form-label">Deskripsi</label>
+                                <label for="inputDeskripsi" class="col-sm-2 col-form-label">Deskripsi</label>
                                 <div class="col-sm-10">
                                     <textarea class="form-control" name="deskripsi" style="height: 100px"></textarea>
                                 </div>
@@ -95,45 +92,45 @@
 @push('scripts')
 <script>
     function previewImage(event) {
-    var reader = new FileReader();
-    reader.onload = function() {
-        var img = new Image();
-        img.onload = function() {
-            var canvas = document.createElement('canvas');
-            var ctx = canvas.getContext('2d');
+        var reader = new FileReader();
+        reader.onload = function () {
+            var img = new Image();
+            img.onload = function () {
+                var canvas = document.createElement('canvas');
+                var ctx = canvas.getContext('2d');
 
-            // Set the desired width and height for the resized image
-            var maxWidth = 200;
-            var maxHeight = 200;
+                // Set the desired width and height for the resized image
+                var maxWidth = 200;
+                var maxHeight = 200;
 
-            // Calculate the new width and height while maintaining the aspect ratio
-            var width = img.width;
-            var height = img.height;
+                // Calculate the new width and height while maintaining the aspect ratio
+                var width = img.width;
+                var height = img.height;
 
-            if (width > height) {
-                if (width > maxWidth) {
-                    height *= maxWidth / width;
-                    width = maxWidth;
+                if (width > height) {
+                    if (width > maxWidth) {
+                        height *= maxWidth / width;
+                        width = maxWidth;
+                    }
+                } else {
+                    if (height > maxHeight) {
+                        width *= maxHeight / height;
+                        height = maxHeight;
+                    }
                 }
-            } else {
-                if (height > maxHeight) {
-                    width *= maxHeight / height;
-                    height = maxHeight;
-                }
-            }
 
-            canvas.width = width;
-            canvas.height = height;
-            ctx.drawImage(img, 0, 0, width, height);
+                canvas.width = width;
+                canvas.height = height;
+                ctx.drawImage(img, 0, 0, width, height);
 
-            var resizedImageUrl = canvas.toDataURL('image/jpeg');
-            var imagePreview = document.getElementById('imagePreview');
-            imagePreview.src = resizedImageUrl;
-            imagePreview.style.display = 'block';
+                var resizedImageUrl = canvas.toDataURL('image/jpeg');
+                var imagePreview = document.getElementById('imagePreview');
+                imagePreview.src = resizedImageUrl;
+                imagePreview.style.display = 'block';
+            };
+            img.src = reader.result;
         };
-        img.src = reader.result;
-    };
-    reader.readAsDataURL(event.target.files[0]);
-}
+        reader.readAsDataURL(event.target.files[0]);
+    }
 </script>
 @endpush

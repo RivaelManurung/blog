@@ -8,7 +8,7 @@
         <h1>Form Data</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{url('/admin/dashboard')}}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}">Home</a></li>
                 <li class="breadcrumb-item active">Form Data</li>
             </ol>
         </nav>
@@ -25,9 +25,8 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
+                                    <th scope="col">No</th>
                                     <th scope="col">Judul</th>
-                                    <th scope="col">Number</th>
                                     <th scope="col">Date Created</th>
                                     <th scope="col">Date Updated</th>
                                     <th scope="col">Deskripsi</th>
@@ -35,13 +34,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($artikel as $data)
+                                @foreach($artikel as $index => $data)
                                 <tr>
-                                    <th scope="row">{{ $data->id }}</th>
+                                    <th scope="row">{{ $index + 1 }}</th>
                                     <td>{{ $data->judul }}</td>
-                                    <td>{{ $data->number }}</td>
-                                    <td>{{ $data->tanggal_dibuat }}</td>
-                                    <td>{{ $data->tanggal_diperbarui }}</td>
+                                    <td>{{ $data->created_at->format('Y-m-d H:i:s') }}</td>
+                                    <td>{{ $data->updated_at->format('Y-m-d H:i:s') }}</td>
                                     <td>{{ $data->deskripsi }}</td>
                                     <td>
                                         <img src="{{ url('images/'.$data->image) }}" alt="{{ $data->judul }}" style="max-width: 100px;">

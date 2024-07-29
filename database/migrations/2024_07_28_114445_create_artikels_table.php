@@ -17,9 +17,8 @@ return new class extends Migration
             $table->text('deskripsi');
             $table->string('image');
             $table->unsignedBigInteger('id_categories');
-            $table->dateTime('tanggal_dibuat')->useCurrent();
-            $table->dateTime('tanggal_diperbarui')->useCurrent()->useCurrentOnUpdate();
             $table->foreign('id_categories')->references('id')->on('categories');
+            $table->timestamps();
         });
     }
 

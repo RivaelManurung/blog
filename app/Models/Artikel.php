@@ -11,9 +11,13 @@ class Artikel extends Model
     protected $fillable = [
         'judul',
         'number',
-        'tanggal_dibuat',
-        'tanggal_diperbarui',
         'deskripsi',
         'image',
+        'id_categories',
     ];
+
+    public function categori()
+    {
+        return $this->belongsTo(Categori::class, 'id_categories');
+    }
 }

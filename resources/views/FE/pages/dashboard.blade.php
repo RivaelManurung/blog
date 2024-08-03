@@ -1,24 +1,21 @@
-<!-- resources/views/FE/pages/dashboard.blade.php -->
 @extends('FE.layout.baselayout')
-
 @section('content')
-<body>
-  <!-- Preloader, Header, and Banner Sections -->
 
+
+<body>
   <div class="main-banner header-text">
     <div class="container-fluid">
       <div class="owl-banner owl-carousel">
         @foreach($artikels as $artikel)
         <div class="item">
+          <p>{{ $artikel->judul }}</p>
           <img src="{{ url('images/'.$artikel->image) }}" alt="{{ $artikel->judul }}">
           <div class="item-content">
             <div class="main-content">
               <div class="meta-category">
                 <span>{{ $artikel->categori->name ?? 'Uncategorized' }}</span>
               </div>
-              {{-- <a href="{{ route('dashboard.show', $artikel->id) }}"> --}}
-
-              <a >
+              <a href="{{ route('dashboard.show', $artikel->id) }}">
                 <h4>{{ $artikel->judul }}</h4>
               </a>
               <ul class="post-info">
@@ -29,6 +26,7 @@
           </div>
         </div>
         @endforeach
+
       </div>
     </div>
   </div>
@@ -119,7 +117,7 @@
                   <div class="content">
                     <ul>
                       @foreach($categories as $category)
-                      <li><a href="{{ route('dashboard.show', $category->id) }}">- {{ $category->name }}</a></li>
+                      <li><a {{ $category->name }}</a></li>
                       @endforeach
                     </ul>
                   </div>

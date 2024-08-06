@@ -1,16 +1,7 @@
 @extends('FE.layout.baselayout')
+@section('content')
 
 <body>
-
-  <!-- ***** Preloader Start ***** -->
-  <div id="preloader">
-    <div class="jumper">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
-  <!-- ***** Preloader End ***** -->
 
   @include('FE.layout.header')
 
@@ -88,7 +79,7 @@
                   <div class="content">
                     <ul>
                       <li>
-                        <h5>090-484-8080</h5>
+                        <h5>XXX - XXX - XXX</h5>
                         <span>PHONE NUMBER</span>
                       </li>
                       <li>
@@ -136,9 +127,7 @@
         </div>
         <div class="col-lg-12">
           <div class="copyright-text">
-            <p>Copyright 2020 Stand Blog Co.
-
-              | Design: <a rel="nofollow" href="https://templatemo.com" target="_parent">TemplateMo</a></p>
+            <p>Copyright 2020 Stand Blog Co.</p>
           </div>
         </div>
       </div>

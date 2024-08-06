@@ -27,7 +27,7 @@ class DashboardController extends Controller
         $artikel = Artikel::findOrFail($id);
         $recentPosts = Artikel::orderBy('updated_at', 'desc')->take(5)->get();
 
-        return view('FE.pages.post-details', compact('artikel', 'categories','recentPosts'));
+        return view('FE.pages.post-details', compact('artikel', 'categories', 'recentPosts'));
     }
 
     public function showall()
@@ -37,13 +37,33 @@ class DashboardController extends Controller
         // Fetch all categories
         $categories = Categori::all();
         $recentPosts = Artikel::orderBy('updated_at', 'desc')->take(5)->get();
-        dd($artikels); // Debugging, ini akan menghentikan eksekusi dan menampilkan data artikel
 
         return view('FE.pages.blogs', compact('artikels', 'categories', 'recentPosts'));
     }
 
-    public function about(){
+    public function about()
+    {
         return view('FE.pages.about');
     }
-}
 
+    public function contact()
+    {
+        return view('FE.pages.contact');
+    }
+    public function filterByCategory($id)
+    {
+        // Fetch the selected category
+        $category = Categori::findOrFail($id);
+
+        // Fetch articles by the selected category
+        $artikels = Artikel::where('id_categories', $id)->with('categori')->orderBy('updated_at', 'desc')->get();
+
+        // Fetch all categories for the sidebar
+        $categories = Categori::all();
+
+        // Fetch recent posts
+        $recentPosts = Artikel::orderBy('updated_at', 'desc')->take(5)->get();
+
+        return view('FE.pages.blogs', compact('artikels', 'categories', 'recentPosts'));
+    }
+}

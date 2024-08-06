@@ -76,7 +76,7 @@
               @endforeach
               <div class="col-lg-12">
                 <div class="main-button">
-                  <a href="{{ route('dashboard.index') }}">View All Posts</a>
+                  <a href="{{ route('dashboard.showall') }}">View All Posts</a>
                 </div>
               </div>
             </div>
@@ -110,30 +110,16 @@
                 </div>
               </div>
               <div class="col-lg-12">
-                <div class="sidebar-item categories">
+                <div class="sidebar-item tags">
                   <div class="sidebar-heading">
-                    <h2>Categories</h2>
+                    <h2>categories  </h2>
                   </div>
                   <div class="content">
                     <ul>
                       @foreach($categories as $category)
-                      <li><a {{ $category->name }}</a></li>
+                      <li><a href="{{ route('category.filter', $category->id) }}">{{ $category->name }}</a></li>
                       @endforeach
                     </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-12">
-                <div class="sidebar-item tags">
-                  <div class="sidebar-heading">
-                    <h2>Tag Clouds</h2>
-                  </div>
-                  <div class="content">
-                    {{-- <ul>
-                      @foreach($tags as $tag)
-                      <li><a href="{{ route('tag.show', $tag->id) }}">{{ $tag->name }}</a></li>
-                      @endforeach
-                    </ul> --}}
                   </div>
                 </div>
               </div>
@@ -158,8 +144,7 @@
         </div>
         <div class="col-lg-12">
           <div class="copyright-text">
-            <p>Copyright 2020 Stand Blog Co.
-              | Design: <a rel="nofollow" href="https://templatemo.com" target="_parent">TemplateMo</a></p>
+            <p>Copyright 2020 Stand Blog Co.</p>
           </div>
         </div>
       </div>

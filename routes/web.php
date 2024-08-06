@@ -9,8 +9,12 @@ use App\Http\Controllers\User\DashboardController;
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
 Route::get('/dashboard/{id}', [DashboardController::class, 'show'])->name('dashboard.show');
-Route::get('dashboard/blog', [BlogController::class, 'showall'])->name('blog.showall');
-Route::get('/dashboard/about', [BlogController::class, 'about'])->name('dashboard.about');
+Route::get('/dashbord/blog', [DashboardController::class, 'showall'])->name('dashboard.showall');
+Route::get('/dashbord/about', [DashboardController::class, 'about'])->name('dashboard.about');
+Route::get('/category/{id}', [DashboardController::class, 'filterByCategory'])->name('category.filter');
+Route::get('/contact', [DashboardController::class, 'contact'])->name('category.contact');
+
+
 
 
 Route::prefix('/admin')->namespace('App\Http\Controllers')->group(function () {

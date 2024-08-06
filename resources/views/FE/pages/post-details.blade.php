@@ -42,13 +42,8 @@
           <div class="main-content">
             <div class="row">
               <div class="col-lg-8">
-                <span>{{ $artikel->categories->name ?? 'Uncategorized' }}</span>
+                <span>{{ $artikel->categori->name }}</span>
                 <h4>{{ $artikel->judul }}</h4>
-              </div>
-              <div class="col-lg-4">
-                <div class="main-button">
-                  <a rel="nofollow" href="https://templatemo.com/tm-551-stand-blog" target="_parent">Download Now!</a>
-                </div>
               </div>
             </div>
           </div>
@@ -70,7 +65,7 @@
                     <img src="{{ url('images/'.$artikel->image) }}" alt="{{ $artikel->judul }}">
                   </div>
                   <div class="down-content">
-                    <span>{{ $artikel->categories->name ?? 'Uncategorized' }}</span>
+                    <span>{{ $artikel->categori->name }}</span>
                     <a href="#">
                       <h4>{{ $artikel->judul }}</h4>
                     </a>
@@ -85,7 +80,7 @@
                         <div class="col-6">
                           <ul class="post-tags">
                             <li><i class="fa fa-tags"></i></li>
-                            <li><a href="#">{{ $artikel->categories->name ?? 'Uncategorized' }}</a></li>
+                            <li><a href="#">{{ $artikel->categori->name }}</a></li>
                           </ul>
                         </div>
                         <div class="col-6">
@@ -131,30 +126,16 @@
                 </div>
               </div>
               <div class="col-lg-12">
-                <div class="sidebar-item categories">
+                <div class="sidebar-item tags">
                   <div class="sidebar-heading">
                     <h2>Categories</h2>
                   </div>
                   <div class="content">
                     <ul>
                       @foreach($categories as $category)
-                      <li><a href="{{ route('dashboard.show', $category->id) }}">- {{ $category->name }}</a></li>
+                      <li><a href="{{ route('category.filter', $category->id) }}">{{ $category->name }}</a></li>
                       @endforeach
                     </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-12">
-                <div class="sidebar-item tags">
-                  <div class="sidebar-heading">
-                    <h2>Tag Clouds</h2>
-                  </div>
-                  <div class="content">
-                    {{-- <ul>
-                      @foreach($tags as $tag)
-                      <li><a href="{{ route('tag.show', $tag->id) }}">{{ $tag->name }}</a></li>
-                      @endforeach
-                    </ul> --}}
                   </div>
                 </div>
               </div>
@@ -180,9 +161,7 @@
         </div>
         <div class="col-lg-12">
           <div class="copyright-text">
-            <p>Copyright 2020 Stand Blog Co.
-
-              | Design: <a rel="nofollow" href="https://templatemo.com" target="_parent">TemplateMo</a></p>
+            <p>Copyright 2020 Stand Blog Co.</p>
           </div>
         </div>
       </div>

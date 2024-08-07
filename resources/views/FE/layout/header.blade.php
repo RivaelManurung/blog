@@ -20,9 +20,6 @@
                         <a class="nav-link" href="{{ route('dashboard.showall') }}">Blog Entries</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('dashboard.about') }}">About Us</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="{{ url('/contact') }}">Contact Us</a>
                     </li>
                 </ul>

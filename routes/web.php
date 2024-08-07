@@ -10,7 +10,7 @@ use App\Http\Controllers\User\DashboardController;
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
 Route::get('/dashboard/{id}', [DashboardController::class, 'show'])->name('dashboard.show');
 Route::get('/dashbord/blog', [DashboardController::class, 'showall'])->name('dashboard.showall');
-Route::get('/dashbord/about', [DashboardController::class, 'about'])->name('dashboard.about');
+// Route::get('/dashbord/about', [DashboardController::class, 'about'])->name('dashboard.about');
 Route::get('/category/{id}', [DashboardController::class, 'filterByCategory'])->name('category.filter');
 Route::get('/contact', [DashboardController::class, 'contact'])->name('category.contact');
 

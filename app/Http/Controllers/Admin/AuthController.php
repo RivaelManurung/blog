@@ -6,13 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use App\Models\Artikel;
+use Illuminate\Support\Facades\DB;
 
 
 
 class AuthController extends Controller
 {
-    use  ValidatesRequests;
-
+    use ValidatesRequests;
     public function login(request $request)
     {
         if ($request->isMethod('POST')) {
@@ -48,6 +49,12 @@ class AuthController extends Controller
 
     public function dashboard()
     {
-        return view('BE.pages.dashboard');
+        $artikelCountsPerDay = Artikel::select(DB::raw('DATE (created_at) as date'), DB::raw('count(*) as count'))
+        ->groupBy('date')
+        ->orderBy('date', 'asc')
+        ->get();
+
+        $latesArtikels = Artikel::latest()->take(5)->get();
+        return view('BE.pages.dashboard', compact('artikelCountsPerDay' , 'latesArtikels'));
     }
 }

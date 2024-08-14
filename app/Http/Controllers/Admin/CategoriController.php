@@ -1,11 +1,12 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
 use App\Models\Categori;
+use Illuminate\Http\Request;
 
-class CategoriController extends Controller
+class CategoriController extends BaseController
 {
     public function index()
     {
@@ -15,6 +16,7 @@ class CategoriController extends Controller
 
     public function create()
     {
+
         return view('BE.pages.categori.create');
     }
 
@@ -37,6 +39,7 @@ class CategoriController extends Controller
         return view('BE.pages.categori.update', compact('category'));
     }
 
+
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -50,6 +53,7 @@ class CategoriController extends Controller
 
         return redirect()->route('categori.index')->with('success', 'Category updated successfully!');
     }
+
 
     public function destroy($id)
     {
